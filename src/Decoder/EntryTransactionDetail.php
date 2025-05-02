@@ -252,6 +252,14 @@ abstract class EntryTransactionDetail
 
             return;
         }
+        elseif (isset($xmlDetail->RltdDts->TxDtTm)) {
+            $RelatedDates = DTO\RelatedDates::fromUnstructured(
+                $this->dateDecoder->decode((string) $xmlDetail->RltdDts->TxDtTm)
+            );
+            $detail->setRelatedDates($RelatedDates);
+
+            return;
+        }
     }
 
     public function addReturnInformation(DTO\EntryTransactionDetail $detail, SimpleXMLElement $xmlDetail): void
