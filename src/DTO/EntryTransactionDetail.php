@@ -30,6 +30,8 @@ class EntryTransactionDetail
 
     private ?BankTransactionCode $bankTransactionCode = null;
 
+    private ?PurpCode $purpCode = null;
+
     private ?Charges $charges = null;
 
     private ?Money $amountDetails = null;
@@ -135,6 +137,16 @@ class EntryTransactionDetail
     public function getBankTransactionCode(): ?BankTransactionCode
     {
         return $this->bankTransactionCode;
+    }
+
+    public function getPurpCode(): ?PurpCode
+    {
+        return $this->purpCode;
+    }
+
+    public function setPurpCode(PurpCode $purpCode): void
+    {
+        $this->purpCode = $purpCode;
     }
 
     public function setBankTransactionCode(BankTransactionCode $bankTransactionCode): void

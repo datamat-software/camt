@@ -10,6 +10,8 @@ class CreditorAgent implements RelatedAgentTypeInterface
 
     private string $BIC;
 
+    private $Type = "Creditor";  
+
     /**
      * CreditorAgent constructor.
      */
@@ -17,6 +19,11 @@ class CreditorAgent implements RelatedAgentTypeInterface
     {
         $this->name = $name;
         $this->BIC = $BIC;
+    }
+
+    public function getType(): string
+    {
+        return $this->Type;
     }
 
     public function getName(): string

@@ -86,8 +86,8 @@ abstract class EntryTransactionDetail
 
             if (isset($xmlRelatedParty->UltmtCdtr)) {
                 $xmlRelatedPartyType = $xmlRelatedParty->UltmtCdtr;
-
-                $this->addRelatedParty($detail, $xmlRelatedPartyType, DTO\UltimateCreditor::class);
+                $xmlRelatedPartyName = (isset($xmlRelatedPartyType->Nm)) ? (string) $xmlRelatedPartyType->Nm : null ;
+                $this->addRelatedParty($detail, $xmlRelatedPartyType, DTO\UltimateCreditor::class, $xmlRelatedPartyName);
             }
 
             if (isset($xmlRelatedParty->Dbtr)) {
@@ -99,8 +99,8 @@ abstract class EntryTransactionDetail
 
             if (isset($xmlRelatedParty->UltmtDbtr)) {
                 $xmlRelatedPartyType = $xmlRelatedParty->UltmtDbtr;
-
-                $this->addRelatedParty($detail, $xmlRelatedPartyType, DTO\UltimateDebtor::class);
+                $xmlRelatedPartyName = (isset($xmlRelatedPartyType->Nm)) ? (string) $xmlRelatedPartyType->Nm : null ;
+                $this->addRelatedParty($detail, $xmlRelatedPartyType, DTO\UltimateDebtor::class, $xmlRelatedPartyName);
             }
         }
     }
@@ -359,6 +359,16 @@ abstract class EntryTransactionDetail
         if (isset($xmlDetail->Amt)) {
             $money = $this->moneyFactory->create($xmlDetail->Amt, $CdtDbtInd);
             $detail->setAmount($money);
+        }
+    }
+
+    public function addPurpCode(DTO\EntryTransactionDetail $detail, SimpleXMLElement $xmlDetail): void
+    {
+        if (isset($xmlDetail->Purp)) {
+            $purpCode = new DTO\PurpCode(
+                (string) $xmlDetail->Purp->Cd
+            );
+            $detail->setPurpCode($purpCode);
         }
     }
 

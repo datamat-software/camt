@@ -35,6 +35,7 @@ class Entry
                 $this->entryTransactionDetailDecoder->addCharges($detail, $xmlDetail);
                 $this->entryTransactionDetailDecoder->addAmountDetails($detail, $xmlDetail, $xmlEntry->CdtDbtInd);
                 $this->entryTransactionDetailDecoder->addAmount($detail, $xmlDetail, $xmlEntry->CdtDbtInd);
+                $this->entryTransactionDetailDecoder->addPurpCode($detail, $xmlDetail);
 
                 $entry->addTransactionDetail($detail);
             }

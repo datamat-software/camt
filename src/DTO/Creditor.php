@@ -10,8 +10,15 @@ class Creditor implements RelatedPartyTypeInterface
 
     private ?Identification $identification = null;
 
+    private $Type = "Creditor";
+
     public function __construct(private ?string $name)
     {
+    }
+
+    public function getType()
+    {
+        return $this->Type;
     }
 
     public function setAddress(Address $address): void
